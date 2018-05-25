@@ -14,4 +14,5 @@ let productSchema = new Schema({
     }],
     "image_url":String
 });
-module.exports = mongoose.model('good',productSchema);
+//if this name is good,it will link to goods automatically,so the third argument could be ignored
+module.exports = mongoose.model('good',productSchema,'goods');

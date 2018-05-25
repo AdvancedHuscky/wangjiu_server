@@ -16,6 +16,22 @@ mongoose.connection.on('disconnected',()=>{
     console.log('mongodb connected disconnected')
 })
 router.get('/',(req,res,next)=>{
-    res.send('hello mongoose')
+    Goods.find({},(err,doc)=>{
+        if(err){
+            res.json({
+                status:'1',
+                msg:err.message
+            })
+        }else{
+            res.json({
+                status:'0',
+                msg:'',
+                result:{
+                    count:doc.length,
+                    list:doc
+                }
+            })
+        }
+    })
 })
 module.exports = router;
