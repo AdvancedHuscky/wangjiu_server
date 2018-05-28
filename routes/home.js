@@ -4,7 +4,8 @@ let mongoose = require('mongoose');
 
 const carousel = require('../models/home/carousel.js');
 const iconList = require('../models/home/iconList.js');
-const flashSalesList = require('../models/home/flashSalesList')
+const flashSalesList = require('../models/home/flashSalesList');
+const grandCruList = require('../models/home/grandCruList')
 
 mongoose.connect('mongodb://127.0.0.1:27017/wangjiu');
 mongoose.connection.on('connected',()=>{
@@ -70,4 +71,23 @@ router.get('/flashSalesList',(req,res,next)=>{
         }
     })
 })
+router.get('/grandCruList',(req,res,next)=>{
+    grandCruList.find({},(err,doc)=>{
+        if(err){
+            res.json({
+                status: '1',
+                msg: err.message
+            })
+        }else{
+            res.json({
+                status:'0',
+                result:{
+                    count:doc.length,
+                    data:doc
+                }
+            })
+        }
+    })
+})
+
 module.exports = router;
