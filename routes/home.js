@@ -3,6 +3,7 @@ let router = express.Router();
 let mongoose = require('mongoose');
 
 const carousel = require('../models/home/carousel.js');
+const iconList = require('../models/home/iconList.js');
 
 mongoose.connect('mongodb://127.0.0.1:27017/wangjiu');
 mongoose.connection.on('connected',()=>{
@@ -30,6 +31,24 @@ router.get('/carousel',(req,res,next)=>{
                 }
             })
         )
+    })
+})
+router.get('/iconList',(req,res,next)=>{
+    iconList.find({},(err,doc)=>{
+        if(err){
+            res.json({
+                status: '1',
+                msg: err.message
+            })
+        }else{
+            res.json({
+                status:'0',
+                result:{
+                    count:doc.length,
+                    data:doc
+                }
+            })
+        }
     })
 })
 module.exports = router;
