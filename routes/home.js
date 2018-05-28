@@ -3,6 +3,7 @@ let router = express.Router();
 let mongoose = require('mongoose');
 
 const carousel = require('../models/home/carousel.js');
+
 mongoose.connect('mongodb://127.0.0.1:27017/wangjiu');
 mongoose.connection.on('connected',()=>{
     console.log('mongodb connected success')
