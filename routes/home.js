@@ -1,6 +1,6 @@
 let express = require('express');
 let router = express.Router();
-let mongoose = require('mongoose');
+let mongoose = require('./mongoose');
 
 const carousel = require('../models/home/carousel.js');
 const iconList = require('../models/home/iconList.js');
@@ -9,16 +9,6 @@ const grandCruList = require('../models/home/grandCruList');
 const specialsList = require('../models/home/specialsList');
 const goodsItem = require('../models/home/goodsItem')
 
-mongoose.connect('mongodb://127.0.0.1:27017/wangjiu');
-mongoose.connection.on('connected',()=>{
-    console.log('mongodb connected success')
-})
-mongoose.connection.on('error',()=>{
-    console.log('some error occured')
-})
-mongoose.connection.on('disconnected',()=>{
-    console.log('mongodb connected disconnected')
-})
 router.get('/carousel',(req,res,next)=>{
     carousel.find({},(err,doc)=>{
         if(err){
