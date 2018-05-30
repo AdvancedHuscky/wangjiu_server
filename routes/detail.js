@@ -2,10 +2,14 @@
 let express = require('express')
 let router = express.Router();
 let mongoose = require('./mongoose');
-let Goods = require('../models/goods');
+let Detail = require('../models/detail');
 
 router.get('/',(req,res,next)=>{
-    Goods.find({},(err,doc)=>{
+    console.log(req.query.id);
+    let pid = req.query.id;
+    // let pid = parseInt(req.query.id);
+    console.log(pid);
+    Detail.find({pid},(err,doc)=>{
         if(err){
             res.json({
                 status:'1',
